@@ -27,6 +27,9 @@ public class InformationServiceImpl implements InformationService {
 		builder.append(System.getProperty("line.separator"));
 		builder.append("TeamType: ");
 		builder.append(getTeamType()).toString();
+		builder.append(System.getProperty("line.separator"));
+		builder.append("Is fan good person: ");
+		builder.append(teamService.isFanGoodPerson());
 		
 		return builder.toString();
 	}

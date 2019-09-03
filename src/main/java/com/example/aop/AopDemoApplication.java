@@ -11,29 +11,27 @@ import com.example.aop.service.InformationService;
 public class AopDemoApplication {
 
 	public static void main(String[] args) {
-		
+
 		ApplicationContext context = SpringApplication.run(AopDemoApplication.class, args);
 
 		InformationService informationService = (InformationService) context.getBean(InformationService.class);
 
 		TeamTenantContext.setTenantId("Liverpool");
 		displayInformation(informationService.displayInformation());
-		
+
 		TeamTenantContext.setTenantId("ManchesterUnited");
 		displayInformation(informationService.displayInformation());
-		
-		TeamTenantContext.clear();
+
+		TeamTenantContext.setTenantId("Arsenal");
 		displayInformation(informationService.displayInformation());
-		
+
 	}
-	
-	private static void displayInformation( String information) {
+
+	private static void displayInformation(String information) {
 
 		System.out.println("-------------" + TeamTenantContext.getTenantId() + " Team Information-------------");
 		System.out.println(information);
 		System.out.println("------------------------------------------");
 	}
-
-	
 
 }

@@ -4,8 +4,6 @@ import org.aspectj.lang.Aspects;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver;
-
 import com.example.aop.aspect.MyAspect;
 
 @Configuration
@@ -22,9 +20,9 @@ public class AspectJConfig{
 
 
 
-    @Bean
+   /* @Bean
     public InstrumentationLoadTimeWeaver loadTimeWeaver()  throws Throwable {
         InstrumentationLoadTimeWeaver loadTimeWeaver = new InstrumentationLoadTimeWeaver();
         return loadTimeWeaver;
-    }
+    }*/
 }

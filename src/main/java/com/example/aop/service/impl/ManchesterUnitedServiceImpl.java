@@ -7,9 +7,11 @@ import com.example.aop.service.TeamService;
 @Service
 public class ManchesterUnitedServiceImpl implements TeamService {
 
+	private String post;
 	@Override
 	public String getAverageFansFacebookPosts() {
-		return "Liverpool";
+		post = "Liverpool";
+		return post;
 	}
 
 	@Override

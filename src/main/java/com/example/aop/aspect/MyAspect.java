@@ -1,6 +1,5 @@
 package com.example.aop.aspect;
 
-import java.util.Arrays;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -25,7 +24,6 @@ public class MyAspect {
 		System.out.println();
 		System.out.println("logAround() is running!");
 		System.out.println("hijacked method : " + joinPoint.getSignature().getName());
-		System.out.println("hijacked arguments : " + Arrays.toString(joinPoint.getArgs()));
 		Object result = joinPoint.proceed();
 		System.out.println("******");
 		System.out.println();
@@ -37,7 +35,6 @@ public class MyAspect {
 
 		System.out.println("logAfterReturning() is running!");
 		System.out.println("hijacked : " + joinPoint.getSignature().getName());
-		System.out.println("Method returned value is : " + result);
 		System.out.println("******");
 		System.out.println();
 	}
@@ -54,11 +51,17 @@ public class MyAspect {
 	}
 	
 
-	@Around("get(com.example.aop.service.TeamService com.example.aop..*)")
+	@Around("get(com.example.aop.service.TeamService com.example.aop.service..*)")
     public TeamService afterFieldAccess(ProceedingJoinPoint joinPoint) throws Throwable {
 		joinPoint.proceed();
 		return businessLogic.getService(TeamTenantContext.getTenantId());
     }
     
+	@Around("set(String com.example.aop.service..*)")
+    public Object afterFieldSet(ProceedingJoinPoint joinPoint) throws Throwable {
+		String value = (String) joinPoint.getArgs()[0];
+	    String newValue = "Talk about " + value;
+		return joinPoint.proceed(new String[] {newValue});
+    }
 	
 }
